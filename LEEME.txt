@@ -1,0 +1,253 @@
+===============================================================================
+CUADERNO INTERACTIVO DE LABORATORIO
+Universidad Tecnológica de Pereira · Facultad de Ciencias Básicas
+Departamento de Física · Laboratorio de Física I
+Práctica 4 · Caída libre
+===============================================================================
+
+CÓMO SE ABRE
+-------------------------------------------------------------------------------
+Haz doble clic en «index.html». Se abre en cualquier navegador moderno
+(Chrome, Edge, Firefox, Safari), sin instalar nada y sin servidor.
+
+Mantén la carpeta completa: el cuaderno necesita las subcarpetas css, js e
+imagenesUTP que están a su lado. Si mueves solo el index.html, se verá sin
+estilos y sin la portada.
+
+Con conexión a internet las tipografías se cargan desde Google Fonts. Sin
+conexión el cuaderno funciona igual: el navegador sustituye las tipografías por
+las del sistema y nada más cambia.
+
+
+ESTRUCTURA DE LA CARPETA
+-------------------------------------------------------------------------------
+index.html .................. estructura, barra superior y navegación
+css/estilos.css ............. toda la apariencia, incluida la hoja de impresión
+js/datos.js ................. contenido académico: textos, glosario, datos de
+                              referencia y constantes de la práctica
+js/paginas.js ............... construcción de las 26 páginas y registro de los
+                              campos con sus respuestas
+js/instrumentos.js .......... montaje interactivo, simulador de caída y todo el
+                              cálculo: promedios, ajuste, aceleración y error
+js/app.js ................... navegación, guardado, autocompletado, verificación
+imagenesUTP/ ................ portada, textura del papel y rosa de los vientos
+LEEME.txt ................... este archivo
+
+
+LAS 26 SECCIONES
+-------------------------------------------------------------------------------
+00  Portada                            13  Tabla 3 · Tercera altura
+01  Índice                             14  Tabla 4 · Cuarta altura
+02  Presentación de la práctica        15  Tabla 5 · Quinta altura
+03  Objetivos                          16  Tabla 6 · Sexta altura
+04  Materiales e instrumentos          17  Tabla 7 · Resumen experimental
+05  Fundamento físico                  18  Gráfica y ecuación experimental
+06  Montaje experimental               19  Determinación de la aceleración
+07  Procedimiento                      20  Comparación con la gravedad
+08  Encabezado del informe             21  Simulador de caída libre
+09  Marco teórico                      22  Preguntas
+10  Preinforme · Predicciones          23  Conclusiones
+11  Tabla 1 · Primera altura           24  Glosario
+12  Tabla 2 · Segunda altura           25  Referencias
+
+
+LOS BOTONES DE LA BARRA SUPERIOR
+-------------------------------------------------------------------------------
+Índice ............. abre el cajón lateral con las 26 secciones.
+Autocompletar todo . rellena de una vez TODOS los campos de TODAS las tablas y
+                     de todas las páginas del cuaderno con el conjunto de datos
+                     de referencia. Pide confirmación antes de sobrescribir.
+Verificar .......... contrasta con la referencia lo que haya escrito y marca en
+                     verde o en rojo, con una nota explicativa bajo cada campo.
+Imprimir ........... genera el PDF de entrega con las 26 páginas seguidas.
+Reiniciar .......... borra todo lo escrito en este navegador.
+
+Cada página de trabajo repite esas acciones en pequeño, limitadas a esa página:
+«Autocompletar esta página», «Verificar» y «Limpiar».
+
+También se puede navegar con las flechas ← y → del teclado.
+
+
+QUÉ SE VERIFICA Y QUÉ NO
+-------------------------------------------------------------------------------
+En esta práctica el estudiante elige sus propias alturas, de modo que las
+casillas de las Tablas 1 a 6 no tienen una respuesta correcta: son datos suyos.
+El cuaderno distingue por eso tres clases de campo.
+
+1. DATOS DEL ESTUDIANTE (alturas, tiempos, observaciones)
+   No se verifican. El botón «Autocompletar» sí los rellena, con el conjunto de
+   datos de referencia que se describe más abajo, para que el docente pueda
+   proyectar un ejemplo completo o para que el estudiante compruebe cómo debería
+   comportarse el cuaderno.
+
+2. RESPUESTAS CON VALOR CORRECTO (las cinco del preinforme)
+   Son los únicos campos que «Verificar» califica. Admiten coma o punto decimal
+   y tienen tolerancia:
+     1. Tiempo de caída desde 1,20 m .............. 0,495 s   (± 0,006)
+     2. Factor del tiempo al duplicar la altura ... 1,41      (± 0,02)
+     3. Altura para un tiempo de 0,50 s ........... 1,225 m   (± 0,02)
+     4. Velocidad de impacto desde 1,80 m ......... 5,94 m/s  (± 0,05)
+     5. Coeficiente k teórico del modelo h = k·t² . 4,90 m/s² (± 0,05)
+   Al verificar, cada campo muestra debajo la nota con el procedimiento, acierte
+   o no.
+
+3. CAMPOS PERSONALES (docente, grupo, estudiantes, códigos y la casilla NOTA)
+   Nunca se autocompletan ni se verifican. La casilla NOTA reproduce la del
+   formato impreso del informe y queda reservada al docente.
+
+Los textos largos —resumen, marco teórico, preguntas y conclusiones— no se
+califican: el autocompletado carga un texto modelo que muestra la profundidad y
+la estructura esperadas, no para copiarlo.
+
+
+EL CONJUNTO DE DATOS DE REFERENCIA
+-------------------------------------------------------------------------------
+El botón «Autocompletar» no sortea números al azar: carga siempre el mismo
+conjunto de datos, de modo que el docente que lo proyecta en clase y el
+estudiante que lo abre en su casa obtienen exactamente los mismos resultados.
+
+Se construye con seis alturas repartidas entre 0,30 m y 1,80 m. Para cada una se
+calcula el tiempo teórico de caída, t = √(2h/g) con g = 9,80 m/s², y se le aplica
+una desviación fija de alrededor del 1 %, distinta en cada una de las tres
+mediciones, que imita la dispersión real de un cronómetro de laboratorio. Las
+desviaciones están escritas una a una en js/datos.js (constante DESVIACIONES).
+
+Con esos datos el cuaderno obtiene:
+
+    ecuación experimental ....... h = 4,8927 · t²
+    coeficiente de determinación  R² = 0,9999
+    aceleración experimental .... a = 2k = 9,79 m/s²
+    error frente a g = 9,80 ..... 0,15 %
+
+Es decir, un resultado creíble: muy cercano al valor de referencia, pero no
+idéntico, como corresponde a unas medidas reales.
+
+
+CÓMO CALCULA EL CUADERNO
+-------------------------------------------------------------------------------
+Promedio de cada tabla
+    t̄ = (t₁ + t₂ + t₃) / 3. Cada página de tabla muestra la suma y la división
+    paso a paso, no solo el resultado.
+
+Ajuste de los datos
+    Mínimos cuadrados, programado en el propio cuaderno, sin bibliotecas
+    externas. Hay tres modelos y se elige con el desplegable de la página 18:
+      · h = k·t²              ajuste por el origen; es el modelo de caída libre
+      · h = A·t² + B·t + C    parábola general, por sistema de ecuaciones
+                              normales 3×3 resuelto por Cramer
+      · h = m·t + b           recta, incluida solo para comparar
+    En los tres casos se calcula el coeficiente de determinación R².
+
+Aceleración
+    Comparando h = ½·a·t² con el ajuste h = k·t² resulta a = 2k. Si se elige el
+    ajuste lineal, el cuaderno avisa de que una recta no tiene término en t² y
+    por tanto no permite despejar la aceleración.
+
+Error relativo
+    E_r (%) = |a_exp − g| / g × 100, con el valor de referencia que se escriba
+    en la página 20. Viene con 9,80 m/s², el del curso, y puede cambiarse.
+
+Todo se recalcula solo: basta corregir un tiempo en cualquier tabla para que el
+promedio, la Tabla 7, la gráfica, la ecuación, la aceleración y el error se
+actualicen.
+
+
+GUARDADO
+-------------------------------------------------------------------------------
+El cuaderno guarda lo escrito en el almacenamiento local del navegador, cada vez
+que se escribe. Eso significa que:
+
+  · se recupera al volver a abrir el archivo en el mismo navegador y equipo;
+  · NO viaja con el archivo: si se copia la carpeta a otro computador, el
+    cuaderno llega en blanco;
+  · el modo incógnito y el borrado de datos de navegación lo eliminan.
+
+Para entregar, usa «Imprimir» y guarda como PDF. Al imprimir, el cuaderno
+despliega el glosario completo y expande las respuestas largas, de modo que en
+el PDF aparece todo el texto escrito y no solo la parte visible en pantalla.
+
+
+ACCESIBILIDAD
+-------------------------------------------------------------------------------
+  · Navegación completa por teclado, incluidos los puntos sensibles del montaje
+    (Tab para llegar, Enter o espacio para activar).
+  · Cada campo tiene su etiqueta para lectores de pantalla.
+  · Los avisos se anuncian mediante regiones «live».
+  · Si el sistema tiene activada la reducción de movimiento, el simulador no
+    anima la caída: muestra directamente el resultado final con todas sus marcas.
+
+
+SOBRE EL MATERIAL DE PARTIDA
+-------------------------------------------------------------------------------
+Para construir este cuaderno se trabajó sobre tres materiales: el índice de
+contenidos de un cuaderno previo de caída libre, la imagen de portada de otra
+práctica y la hoja en blanco membretada. Conviene dejar constancia de lo que se
+encontró en ellos.
+
+1. La portada entregada correspondía a otra práctica y a otra asignatura.
+   Decía «Practica 3: estimación de incertidumbre medidas directas» y
+   «ASIGNATURA: LABORATORIO DE FÍSICA II». Se reescribieron ambos rótulos:
+   ahora dicen «Práctica 4: Caída Libre» y «ASIGNATURA: FÍSICA I - CÓDIGO».
+   La reescritura se hizo sobre la imagen original, reconstruyendo el papel y la
+   retícula que había debajo del texto anterior, de modo que se conservan el
+   logotipo, la filigrana de la rosa de los vientos y el resto del diseño. La
+   palabra «Practica» aparecía además sin tilde en el original; va corregida.
+
+2. La ilustración de la portada no corresponde a la práctica. Es un
+   espectrómetro de masas electromagnético, que pertenece a electromagnetismo y
+   no a cinemática. Se conservó tal cual, por indicación de usar únicamente las
+   imágenes disponibles, pero conviene saberlo: si en algún momento se dispone
+   de una ilustración de la torre de caída libre, basta sustituir el archivo
+   imagenesUTP/portada.png por otro del mismo tamaño.
+
+   En esa misma ilustración, dos de las tres trayectorias están rotuladas
+   «e/m₂»; la inferior debería ser «e/m₃». No se modificó.
+
+3. La hoja en blanco traía el membrete deteriorado: la caja azul decía
+   «FACULTVG DE CIENDAS KOREAS» en lugar de «FACULTAD DE CIENCIAS BÁSICAS», y
+   «ASIGNATURA: FISICA I» aparecía sin tilde. De esa hoja solo se aprovechó el
+   papel: se eliminaron el membrete dañado y la franja de DOCENTE, y lo que
+   queda —la textura, la retícula y la rosa de los vientos— es el fondo de todas
+   las páginas del cuaderno. El encabezado correcto se dibuja ahora por código,
+   en cada página, con el texto bien escrito.
+
+4. Las dos imágenes no coincidían entre sí en la asignatura: la portada decía
+   Física II y la hoja en blanco, Física I. Caída libre es cinemática, es decir
+   Física I, y el documento de origen de la práctica es un informe de Física I.
+   Se unificó todo en Física I.
+
+5. El código de la asignatura no constaba en ninguno de los materiales. La
+   portada conserva la palabra «CÓDIGO» como marcador, igual que el original,
+   y el encabezado interior no lo menciona.
+
+6. Numeración de la práctica. Los dos cuadernos anteriores se entregaron sin
+   número, por indicación expresa. Este lleva «Práctica 4» porque así se pidió
+   para esta portada. Si se prefiere mantener el criterio anterior, basta
+   cambiar META.practica en js/datos.js, el rótulo de la barra en index.html y
+   el texto de la portada.
+
+Los originales entregados se conservan sin modificar en imagenesUTP, con los
+nombres PORTADA_ORIGINAL_P3.png y HOJA_EN_BLANCO_ORIGINAL.png.
+
+
+COMPROBACIONES REALIZADAS
+-------------------------------------------------------------------------------
+Antes de la entrega se ejecutó un banco de 102 comprobaciones automáticas sobre
+el cuaderno cargado en un navegador simulado. Se verificaron, entre otras cosas:
+
+  · que las 26 páginas se construyen, con encabezado, pie e índice completos;
+  · que no queda ni un rastro de la institución ni de la asignatura del material
+    de partida;
+  · que los 75 campos tienen identificador único y están registrados;
+  · que «Autocompletar todo» completa las seis tablas y, en una segunda pasada,
+    las casillas derivadas que dependen de ellas;
+  · que los campos personales y la casilla NOTA quedan siempre en blanco;
+  · que las cinco claves del preinforme coinciden con el cálculo físico;
+  · que el resultado del conjunto de referencia es a = 9,79 m/s² con R² = 0,9999
+    y error del 0,15 %, y que se cumple a = 2k;
+  · que al cambiar de modelo de ajuste el cuaderno responde como debe, incluido
+    el aviso de que una recta no permite despejar la aceleración;
+  · que el montaje, el simulador, el glosario, la navegación, el guardado, la
+    verificación y la impresión funcionan.
+
+===============================================================================
